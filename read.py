@@ -19,3 +19,14 @@ for comment in data:
         new.append(comment)
 print('一共有', len(new), '筆留言長度小於100')
 print(new[0])
+
+# good = []
+# for comment in data:
+#     if 'good' in comment:
+#         good.append(comment)
+good = [comment for comment in data if 'good' in comment]
+print('一共有', len(good), '筆留言提到good') 
+print(good[0])
+
+
+#bad = ['bad' in comment for comment in data] 提到bad裝True、沒提到裝False到bad list
