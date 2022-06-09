@@ -1,11 +1,16 @@
+import time
+import progressbar
+
 data = []
 count = 0
+bar = progressbar.ProgressBar(max_value=1000000)
 with open('reviews.txt','r') as f:
     for line in f:
         data.append(line)
         count +=1
-        if count % 1000000 == 0: # %是用來求餘數的
-            print(len(data))
+        bar.update(count)
+        #if count % 1000000 == 0: # %是用來求餘數的
+            #print(len(data))
 print('檔案讀取完了，總共有', len(data), '筆資料')
 
 sum_len = 0
@@ -30,6 +35,7 @@ print('一共有', len(good), '筆留言提到good')
 print(good[0])
 
 #文字計數
+start_time = time.time()
 wc = {} #word_count
 for d in data:
     words = d.split() #拿到每一筆留言用空格分出每一個英文單字
@@ -41,6 +47,8 @@ for d in data:
 for w in wc:
     if wc[w] > 200000:
         print(w, wc[w])
+end_time = time.time()
+print('一共花', end_time - start_time, '秒')
 
 print('字典一共有',len(wc),'個字')#字典有幾個單字
 
